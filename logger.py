@@ -9,10 +9,9 @@ class Logger(object):
     def __init__(self, file_name):
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
-        self.file_name = None
+        self.file_name = file_name
 
-    def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
-                       basic_repro_num):
+    def write_metadata(self, sim):
         '''
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
@@ -23,26 +22,18 @@ class Logger(object):
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
+        with open(self.file_name, "w") as outfile:
+            outfile.write(f'''< Virus Stats >
+    name: {sim.virus.name}
+    Repro Rate: {sim.virus.repro_rate}
+    Mortality Rate: {sim.virus.mortality_rate}
 
-    def log_interaction(self, person, random_person, random_person_sick=None,
-                        random_person_vacc=None, did_infect=None):
-        '''
-        The Simulation object should use this method to log every interaction
-        a sick person has during each time step.
+< Simulation Stats >
+    Population Size: {sim.pop_size}
+    Vaccinated % = {sim.vacc_percentage}
+            ''')
 
-        The format of the log should be: "{person.ID} infects {random_person.ID} \n"
-
-        or the other edge cases:
-            "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
-        '''
-        # TODO: Finish this method. Think about how the booleans passed (or not passed)
-        # represent all the possible edge cases. Use the values passed along with each person,
-        # along with whether they are sick or vaccinated when they interact to determine
-        # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
-
-    def log_infection_survival(self, person, did_die_from_infection):
+    def log_infection_survival(self, person, did_die_from_infection): #write_metadatata append
         ''' The Simulation object uses this method to log the results of every
         call of a Person object's .resolve_infection() method.
 
@@ -51,6 +42,11 @@ class Logger(object):
         '''
         # TODO: Finish this method. If the person survives, did_die_from_infection
         # should be False.  Otherwise, did_die_from_infection should be True.
+        # Append the results of the infection to the logfile
+        if person.did_survive_infection:
+            did_die_from_infection = False
+        else:
+            did_die_from_infection = True
         # Append the results of the infection to the logfile
         pass
 

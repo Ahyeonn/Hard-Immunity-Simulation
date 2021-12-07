@@ -1,5 +1,5 @@
 import random
-# random.seed(42)
+random.seed(42)
 from virus import Virus
 
 
@@ -27,15 +27,17 @@ class Person(object):
         '''
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
-        if self.infection:
-            if random.uniform(0,1) < self.infection.mortality_rate:
-                self.is_alive = False
-                return False
-            else:
-                self.is_alive = True
-                self.is_vaccinated = True 
-                self.infection = None
-                return True
+        print("Checking if person is alive")
+        if random.uniform(0,1) < self.infection.mortality_rate:
+            print("alive")
+            self.is_alive = False
+            return False
+
+        else:
+            print("dead")
+            self.is_vaccinated = True
+            self.infection = None
+            return True
 
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
 def test_vacc_person_instantiation():

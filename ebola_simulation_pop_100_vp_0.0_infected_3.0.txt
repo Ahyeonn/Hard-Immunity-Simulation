@@ -1,0 +1,9 @@
+< Virus Stats >
+    name: ebola
+    Repro Rate: 1.0
+    Mortality Rate: 1.0
+
+< Simulation Stats >
+    Population Size: 100
+    Vaccinated % = 0.0
+            
