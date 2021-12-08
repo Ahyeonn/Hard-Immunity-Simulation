@@ -1,31 +1,12 @@
 class Logger(object):
-    ''' Utility class responsible for logging all interactions during the simulation. '''
-    # TODO: Write a test suite for this class to make sure each method is working
-    # as expected.
-
-    # PROTIP: Write your tests before you solve each function, that way you can
-    # test them one by one as you write your class.
-
     def __init__(self, file_name):
-        # TODO:  Finish this initialization method. The file_name passed should be the
-        # full file name of the file that the logs will be written to.
         self.file_name = file_name
 
     def write_metadata(self, sim):
-        '''
-        The simulation class should use this method immediately to log the specific
-        parameters of the simulation as the first line of the file.
-        '''
-        # TODO: Finish this method. This line of metadata should be tab-delimited
-        # it should create the text file that we will store all logs in.
-        # TIP: Use 'w' mode when you open the file. For all other methods, use
-        # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
-        # NOTE: Make sure to end every line with a '/n' character to ensure that each
-        # event logged ends up on a separate line!
         with open(self.file_name, "w") as outfile:
             outfile.write(f'''< Virus Stats >
-    name: {sim.virus.name}
-    Repro Rate: {sim.virus.repro_rate}
+    Virus Name: {sim.virus.name}
+    Reproduction Rate: {sim.virus.repro_rate}
     Mortality Rate: {sim.virus.mortality_rate}
 
 < Simulation Stats >
@@ -33,39 +14,15 @@ class Logger(object):
     Vaccinated % = {sim.vacc_percentage}
             ''')
 
-    def log_infection_survival(self, person, did_die_from_infection): #write_metadatata append
-        ''' The Simulation object uses this method to log the results of every
-        call of a Person object's .resolve_infection() method.
+    def log_display_steps(self, sim): #write_metadatata append
+        with open(self.file_name, "a") as outfile:
+            outfile.write(f'''
+Step: {sim.time_step_counter}
+    Interactions: {sim.current_interaction_counter} New Infections: {sim.current_infected} Death: {sim.current_dead} People  Vaccinated: {sim.current_vacc} People
+            ''')
 
-        The format of the log should be:
-            "{person.ID} died from infection\n" or "{person.ID} survived infection.\n"
-        '''
-        # TODO: Finish this method. If the person survives, did_die_from_infection
-        # should be False.  Otherwise, did_die_from_infection should be True.
-        # Append the results of the infection to the logfile
-        if person.did_survive_infection:
-            did_die_from_infection = False
-        else:
-            did_die_from_infection = True
-        # Append the results of the infection to the logfile
-        pass
-
-    def log_time_step(self, time_step_number):
-        ''' STRETCH CHALLENGE DETAILS:
-
-        If you choose to extend this method, the format of the summary statistics logged
-        are up to you.
-
-        At minimum, it should contain:
-            The number of people that were infected during this specific time step.
-            The number of people that died on this specific time step.
-            The total number of people infected in the population, including the newly infected
-            The total number of dead, including those that died during this time step.
-
-        The format of this log should be:
-            "Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
-        '''
-        # TODO: Finish this method. This method should log when a time step ends, and a
-        # new one begins.
-        # NOTE: Here is an opportunity for a stretch challenge!
-        pass
+    def log_total(self, sim):
+        with open(self.file_name, "a") as outfile:
+            outfile.write(f'''
+Total Population: {sim.total_dead + sim.pop_size} Total Death: {sim.total_dead} Total Vaccination: {sim.total_vacc}
+            ''')

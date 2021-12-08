@@ -1,0 +1,20 @@
+< Virus Stats >
+    Virus Name: Ebola
+    Reproduction Rate: 0.5
+    Mortality Rate: 0.5
+
+< Simulation Stats >
+    Population Size: 80
+    Vaccinated % = 0.0
+            
+Step: 1
+    Interactions: 100 New Infections: 1 Death: 0 People  Vaccinated: 1 People
+            
+Step: 2
+    Interactions: 3600 New Infections: 35 Death: 15 People  Vaccinated: 20 People
+            
+Step: 3
+    Interactions: 7900 New Infections: 43 Death: 19 People  Vaccinated: 24 People
+            
+Total Population: 80 Total Death: 34 Total Vaccination: 45
+            
