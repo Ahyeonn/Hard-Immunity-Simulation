@@ -45,7 +45,6 @@ class Simulation(object):
 
         return self.population
         
-
     def _simulation_should_continue(self):
         #not vaccinated or person is alive 
         for person in self.population: # [a = vac , b = not vac, c = is alive]
@@ -114,7 +113,6 @@ class Simulation(object):
                 
             else:
                 self.current_vacc += 1
-
 
 if __name__ == "__main__":
     params = sys.argv[1:]

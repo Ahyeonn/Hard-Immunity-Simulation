@@ -2,7 +2,6 @@ import random
 random.seed(42)
 from virus import Virus
 
-
 class Person(object):
     def __init__(self, _id, is_vaccinated, infection=None):
         self._id = _id  # int

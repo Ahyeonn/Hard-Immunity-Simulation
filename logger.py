@@ -26,3 +26,4 @@ Step: {sim.time_step_counter}
             outfile.write(f'''
 Total Population: {sim.total_dead + sim.pop_size} Total Death: {sim.total_dead} Total Vaccination: {sim.total_vacc}
             ''')
+

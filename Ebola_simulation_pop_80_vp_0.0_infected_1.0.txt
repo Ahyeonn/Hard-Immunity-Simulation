@@ -17,4 +17,3 @@ Step: 3
     Interactions: 7900 New Infections: 43 Death: 19 People  Vaccinated: 24 People
             
 Total Population: 80 Total Death: 34 Total Vaccination: 45
-            

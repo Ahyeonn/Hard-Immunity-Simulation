@@ -6,7 +6,6 @@ class Virus(object):
         self.repro_rate = repro_rate
         self.mortality_rate = mortality_rate
 
-
 if __name__ == "__main__":
     def test_virus_instantiation():
         #TODO: Create your own test that models the virus you are working with
